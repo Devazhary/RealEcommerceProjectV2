@@ -35,7 +35,7 @@
                             @endphp
                             <tr>
                                 <td data-label="صورة">
-                                    <img src="{{ asset($item['image']) }}" alt="{{ $item['name'] }}" width="60" style="border-radius: 8px;">
+                                    <img src="{{ asset('storage/'.$item['image']) }}" alt="{{ $item['name'] }}" width="60" style="border-radius: 8px;">
                                 </td>
                                 <td data-label="المنتج" style="font-weight: 600; color: var(--color-text-dark);">{{ $item['name'] }}</td>
                                 <td data-label="السعر">{{ number_format($item['price'], 2) }} جنيه</td>

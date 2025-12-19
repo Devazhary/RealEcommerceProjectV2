@@ -9,7 +9,7 @@
             @if(!$products->isEmpty())
                 @foreach ($products as $product)
                 <div class="product-card">
-                    <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" />
+                    <img src="{{ asset('storage/'.$product->image) }}" alt="{{ $product->name }}" />
                     <div class="product-info">
                         <h4>{{ $product->name }}</h4>
                         <p>
@@ -17,7 +17,7 @@
                         </p>
                         <span class="price">{{ $product->price }} جنيه</span>
                         <button class="btn primary-btn add-to-cart" data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-price="{{ $product->price }}"
-                            data-image="{{ asset($product->image) }}">
+                            data-image="{{ asset('storage/'.$product->image) }}">
                             أضف للسلة
                         </button>
                     </div>

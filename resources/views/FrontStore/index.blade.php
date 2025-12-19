@@ -22,7 +22,7 @@
                     <!-- المنتج 1-->
                     @foreach ($specialProducts as $specialProduct)
                         <div class="product-card">
-                            <img src="{{ asset($specialProduct->image) }}" alt="{{ $specialProduct->name }}" />
+                            <img src="{{ asset('storage/'.$specialProduct->image) }}" alt="{{ $specialProduct->name }}" />
                             <div class="product-info">
                                 <h4>{{ $specialProduct->name }}</h4>
                                 <p>

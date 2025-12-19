@@ -52,14 +52,6 @@
                     <a href="products.html" class="btn primary-btn">تصفح منتجاتنا</a>
                 </div>
 
-                <div class="about-image">
-                    <img src="images/about-us-farm.jpg" alt="مزارعنا"
-                        style="
-                width: 100%;
-                border-radius: 12px;
-                box-shadow: var(--shadow-soft);
-              " />
-                </div>
             </div>
         </section>
 

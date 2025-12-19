@@ -266,63 +266,6 @@
 
             </form>
 
-        <div class="login-box">
-            <div class="login-content">
-
-                <h1>تسجيل الدخول</h1>
-                <p>أهلاً بعودتك 👋</p>
-
-                @if ($errors->any())
-                    <div class="errors">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-
-                <form method="POST" action="{{ route('login') }}">
-                    @csrf
-
-                    <div class="form-group">
-                        <label for="email">البريد الإلكتروني</label>
-                        <div class="input-wrapper">
-                            <input id="email" type="email" name="email" value="{{ old('email') }}" required
-                                autofocus placeholder="example@email.com">
-                            <span class="input-icon">📧</span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password">كلمة المرور</label>
-                        <div class="input-wrapper">
-                            <input id="password" type="password" name="password" required placeholder="********">
-                            <span class="input-icon">🔒</span>
-                        </div>
-                    </div>
-
-                    <div class="remember">
-                        <input type="checkbox" name="remember" id="remember">
-                        <label for="remember">تذكرني</label>
-                    </div>
-
-                    <button type="submit" class="login-btn">
-                        تسجيل الدخول
-                    </button>
-
-                    <div class="links">
-                        @if (Route::has('password.request'))
-                            <a href="{{ route('password.request') }}">
-                                نسيت كلمة المرور؟
-                            </a>
-                        @endif
-                    </div>
-
-                </form>
-            </div>
-        </div>
-
     </div>
 
 </body>
