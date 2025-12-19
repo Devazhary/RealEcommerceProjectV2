@@ -12,7 +12,7 @@
                 {{ session('success') }}
             </div>
         @endif
-        <form id="contact-form" class="contact-form" method="post" action="{{ route('submitOrder') }}">
+        <form id="contact-form" class="contact-form" method="post" action="{{ route('submitContactForm') }}">
             @csrf
             <div class="form-group">
                 <label for="name">الاسم الكامل:</label>

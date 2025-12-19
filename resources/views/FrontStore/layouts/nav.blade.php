@@ -1,7 +1,10 @@
 <!-- nav -->
 <header class="header">
     <div class="container">
-        <h1 class="logo">Hpm للأسمدة والكيماويات</h1>
+        <img 
+        src="{{ asset('storage/logo/logo.png') }}" 
+        style="width: 120px; height: 100px;"
+        >
         <nav>
             <ul class="nav-links">
                 <li><a href="{{ route('home') }}">الرئيسية</a></li>
