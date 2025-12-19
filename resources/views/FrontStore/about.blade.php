@@ -1,5 +1,5 @@
 @extends('FrontStore.layouts.app')
-@section('title', 'من نحن - سوق الزراعة')
+@section('title', 'من نحن -Hpm للأسمدة والكيماويات')
 @section('content')
 
     <main>

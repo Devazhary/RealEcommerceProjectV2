@@ -1,16 +1,16 @@
 <!-- nav -->
 <header class="header">
     <div class="container">
-        <h1 class="logo">سوق الزراعة</h1>
+        <h1 class="logo">Hpm للأسمدة والكيماويات</h1>
         <nav>
             <ul class="nav-links">
-                <li><a href="index.html">الرئيسية</a></li>
-                <li><a href="products.html">المنتجات</a></li>
-                <li><a href="contact.html">تواصل معنا</a></li>
-                <li><a href="about.html">من نحن</a></li>
-                <li><a href="FAQ.html"> الاسئلة الشائعة</a></li>
+                <li><a href="{{ route('home') }}">الرئيسية</a></li>
+                <li><a href="{{ route('storeProducts') }}">المنتجات</a></li>
+                <li><a href="{{ route('contactForm') }}">تواصل معنا</a></li>
+                <li><a href="{{ route('aboutUs') }}">من نحن</a></li>
+                <li><a href="{{ route('faqs') }}">الأسئلة الشائعة</a></li>
                 <li>
-                    <a href="cart.html">السلة (<span id="cart-count">0</span>)</a>
+                    <a href="{{ route('cart.index') }}">السلة</a>
                 </li>
             </ul>
         </nav>

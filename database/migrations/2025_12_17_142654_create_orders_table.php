@@ -22,7 +22,7 @@ return new class extends Migration
             $table->decimal('delivery_price', 8, 2)->default(100.00);
             $table->text('customer_address');
             $table->decimal('total_price', 10, 2);
-            $table->enum('status', ['pending', 'processing', 'shipped', 'delivered'])->default('pending');
+            $table->enum('status', ['pending', 'processing', 'shipped', 'delivered', 'cancelled'])->default('pending');
             $table->timestamps();
 
         });

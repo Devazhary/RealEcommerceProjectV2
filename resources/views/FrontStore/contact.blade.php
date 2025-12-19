@@ -1,5 +1,5 @@
 @extends('FrontStore.layouts.app')
-@section('title', 'تواصل معنا - سوق الزراعة')
+@section('title', 'تواصل معنا - Hpm للأسمدة والكيماويات')
 @section('content')
 
     <main class="container contact-page">
@@ -7,16 +7,21 @@
         <p class="contact-description">
             يسعدنا تلقي استفساراتكم وملاحظاتكم عبر النموذج التالي:
         </p>
-
-        <form id="contact-form" class="contact-form">
+        @if(session('success'))
+            <div class="alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+        <form id="contact-form" class="contact-form" method="post" action="{{ route('submitOrder') }}">
+            @csrf
             <div class="form-group">
                 <label for="name">الاسم الكامل:</label>
                 <input type="text" id="name" name="name" required aria-label="الاسم الكامل" />
             </div>
 
             <div class="form-group">
-                <label for="phone">رقم الهاتف (10 أرقام):</label>
-                <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" aria-label="رقم الهاتف" />
+                <label for="phone">رقم الهاتف:</label>
+                <input type="tel" id="phone" name="phone" required pattern="[0-9]{11}" aria-label="رقم الهاتف" />
                 <small class="error-message" id="phone-error"></small>
             </div>
 

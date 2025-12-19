@@ -779,3 +779,373 @@ main {
         --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
     }
 }
+
+/* Alert Success - تصميم متناسق مع سوق الزراعة */
+/* Alert Success - نسخة مصححة */
+.alert-success {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    background: linear-gradient(
+        135deg,
+        #E8F5E9 0%,
+        #C8E6C9 100%
+    );
+    color: var(--color-primary-dark);
+    border-right: 6px solid var(--color-primary);
+    padding: 1.2rem 1.6rem;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+
+    animation: alertFadeIn 0.4s ease-out;
+}
+
+/* أيقونة الصح */
+.alert-success .icon {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(
+        135deg,
+        var(--color-primary),
+        var(--color-primary-dark)
+    );
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    box-shadow: var(--shadow-xs);
+}
+
+/* النص */
+.alert-success .message {
+    flex: 1;
+}
+
+/* Hover */
+.alert-success:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+    transition: all var(--transition-base);
+}
+
+/* Animation */
+@keyframes alertFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== Order Page ===== */
+
+.order-form {
+    max-width: 700px;
+    margin: 3rem auto;
+    background-color: white;
+    padding: 3rem;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.order-form select {
+    width: 100%;
+    padding: 1.1rem 1.3rem;
+    border: 2px solid #E0E0E0;
+    border-radius: var(--border-radius-md);
+    font-size: 1rem;
+    font-family: inherit;
+    background-color: #FAFAFA;
+    transition: all var(--transition-base);
+    direction: rtl;
+}
+
+.order-form select:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 4px rgba(56, 142, 60, 0.1);
+    outline: none;
+    background-color: white;
+}
+
+.order-btn {
+    width: 100%;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .order-form {
+        padding: 2rem;
+        margin: 2rem 1rem;
+    }
+}
+
+/* ===== Cart Page Styles - مُعدل لهوية سوق الزراعة ===== */
+
+/* عنوان الصفحة */
+.page-title {
+    text-align: center;
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 2rem 0 3rem;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.page-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    transform: translateX(50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+    border-radius: 2px;
+}
+
+/* تصميم الجدول */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 2rem 0;
+    background: white;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+thead {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
+}
+
+thead th {
+    padding: 1.2rem 1rem;
+    text-align: right;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+tbody tr {
+    border-bottom: 1px solid #e2e8f0;
+    transition: background-color var(--transition-fast);
+}
+
+tbody tr:hover {
+    background-color: var(--color-background-alt);
+}
+
+tbody tr:last-child {
+    border-bottom: none;
+}
+
+tbody td {
+    padding: 1.2rem 1rem;
+    text-align: right;
+    color: var(--color-text-dark);
+    vertical-align: middle;
+}
+
+/* صورة المنتج داخل الجدول */
+tbody td img {
+    border-radius: var(--border-radius-sm);
+    object-fit: cover;
+    box-shadow: var(--shadow-xs);
+    transition: transform var(--transition-base);
+}
+
+tbody td img:hover {
+    transform: scale(1.1);
+}
+
+/* مدخل الكمية */
+input[type="number"] {
+    width: 80px;
+    padding: 0.6rem;
+    border: 2px solid #E0E0E0;
+    border-radius: var(--border-radius-md);
+    text-align: center;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all var(--transition-base);
+    background-color: #FAFAFA;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(56, 142, 60, 0.1);
+    background-color: white;
+}
+
+/* إجمالي السلة */
+.cart-total {
+    background: linear-gradient(135deg, white 0%, var(--color-background-alt) 100%);
+    border-right: 5px solid var(--color-primary);
+    padding: 2rem;
+    border-radius: var(--border-radius-lg);
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-primary-dark);
+    margin: 2.5rem 0;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(56, 142, 60, 0.1);
+}
+
+.cart-total span {
+    color: var(--color-accent-dark);
+}
+
+/* أزرار التحكم في السلة (حذف) */
+.delete-btn {
+    background: linear-gradient(135deg, #D32F2F, #C62828);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    font-weight: 500;
+}
+
+.delete-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    opacity: 0.9;
+}
+
+/* ===== التجاوب مع الشاشات (Responsive) ===== */
+
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 1.8rem;
+    }
+
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    thead {
+        display: none; /* إخفاء الرأس في الجوال */
+    }
+
+    table {
+        background: transparent;
+        box-shadow: none;
+        border: none;
+    }
+
+    tbody tr {
+        background: white;
+        margin-bottom: 1.5rem;
+        border-radius: var(--border-radius-lg);
+        padding: 1rem;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    tbody td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #f0f4f8;
+        padding: 0.8rem 0.5rem;
+    }
+
+    tbody td:last-child {
+        border-bottom: none;
+    }
+
+    /* إضافة عنوان قبل كل معلومة باستخدام data-label */
+    tbody td::before {
+        content: attr(data-label);
+        font-weight: 700;
+        color: var(--color-primary-dark);
+    }
+
+    tbody td img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .cart-total {
+        font-size: 1.4rem;
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    tbody td {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+
+    input[type="number"] {
+        width: 100%;
+    }
+}
+
+/* حاوية الزر */
+.cart-actions-container {
+    text-align: center;
+    margin: 2.5rem 0;
+}
+
+/* زر تحديث الكميات - بنفس تصميم أزرار سوق الزراعة */
+.update-cart-btn {
+    display: inline-block;
+    padding: 0.9rem 2.5rem;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius-md); /* حواف متناسقة مع الموقع */
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: 'Noto Sans Arabic', sans-serif;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.update-cart-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+}
+
+.update-cart-btn:active {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* تحسين للجوال */
+@media (max-width: 480px) {
+    .update-cart-btn {
+        width: 100%; /* الزر يأخذ العرض كامل في الموبايل لسهولة الضغط */
+        padding: 1rem;
+    }
+}
