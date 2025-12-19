@@ -176,7 +176,7 @@
                 <td>{{ $index + 1 }}</td>
                 <td>
                     @if ($product->image)
-                        <img src="{{ asset($product->image) }}" alt="{{ $product->name }}"
+                        <img src="{{ Storage::url($product->image) }}" alt="{{ $product->name }}"
                             class="product-image" title="{{ $product->name }}"
                             style="max-width: 80px; max-height: 80px; object-fit: cover; border-radius: 5px;">
                     @else
