@@ -19,4 +19,16 @@ class Order extends Model
         'status',
     ];
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * Get the order items for the product.
+     */
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
 }

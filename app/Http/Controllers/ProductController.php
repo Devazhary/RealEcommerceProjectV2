@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
@@ -11,16 +12,16 @@ use App\Models\Category;
 class ProductController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * عرض جميع المنتجات.
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::all(); // يمكنك استخدام paginate() لاحقاً
         return view('adminDashboard.products.index', compact('products'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * نموذج إضافة منتج جديد.
      */
     public function create()
     {
@@ -29,23 +30,12 @@ class ProductController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * تخزين منتج جديد.
      */
     public function store(StoreProductRequest $request)
     {
         $data = $request->validated();
-
-        if ($request->hasFile('image')) {
-
-            // اسم فريد للصورة
-            $imageName = time() . '_' . uniqid() . '.' . $request->image->extension();
-
-            // تخزين الصورة
-            $request->image->move(public_path('uploads/products'), $imageName);
-
-            // تخزين اسم الصورة في الداتا
-            $data['image'] = 'uploads/products/' . $imageName;
-        }
+        $data['image'] = $this->handleImageUpload($request);
 
         Product::create($data);
 
@@ -55,43 +45,35 @@ class ProductController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * عرض تفاصيل منتج.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        $product = Product::where('id', $id)->first();
+        $product = Product::findOrFail($id);
         return view('adminDashboard.products.show', compact('product'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * نموذج تعديل المنتج.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        $product = Product::where('id', $id)->first();
+        $product = Product::findOrFail($id);
         $categories = Category::all();
-
         return view('adminDashboard.products.edit', compact('product', 'categories'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * تحديث بيانات المنتج.
      */
-    public function update(UpdateProductRequest $request, string $id)
+    public function update(UpdateProductRequest $request, $id)
     {
         $product = Product::findOrFail($id);
         $data = $request->validated();
+        $image = $this->handleImageUpload($request);
 
-        if ($request->hasFile('image')) {
-
-            // اسم فريد للصورة
-            $imageName = time() . '_' . uniqid() . '.' . $request->image->extension();
-
-            // تخزين الصورة
-            $request->image->move(public_path('uploads/products'), $imageName);
-
-            // تخزين اسم الصورة في الداتا
-            $data['image'] = 'uploads/products/' . $imageName;
+        if ($image) {
+            $data['image'] = $image;
         }
 
         $product->update($data);
@@ -102,24 +84,57 @@ class ProductController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * حذف المنتج.
      */
-    public function destroy($id)
-    {
-        Product::find($id)->delete();
-        session()->flash('message', 'تم حذف المنتج بنجاح');
-        session()->flash('alert-type', 'danger');
-        return redirect('/products');
+
+public function destroy(Product $product)
+{
+    // حذف الصورة من storage
+    if ($product->image && Storage::disk('public')->exists($product->image)) {
+        Storage::disk('public')->delete($product->image);
     }
 
+    // حذف المنتج
+    $product->delete();
+
+    return redirect()->route('products.index')->with([
+        'message' => 'تم حذف المنتج والصورة بنجاح',
+        'alert-type' => 'success',
+    ]);
+}
+
+    /**
+     * تبديل حالة المنتج المميز.
+     */
     public function toggleSpecial(Product $product)
     {
         $product->is_special = !$product->is_special;
         $product->save();
 
-        // رسالة نجاح
         return redirect()->back()
             ->with('message', 'تم تحديث حالة المنتج المميز بنجاح')
             ->with('alert-type', 'success');
     }
+
+    /**
+     * رفع الصورة وإرجاع المسار.
+     */
+private function handleImageUpload(Request $request)
+{
+    if ($request->hasFile('image')) {
+
+        $image = $request->file('image');
+
+        // اسم فريد للصورة
+        $fileName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+        // التخزين داخل storage/app/public/uploads/products
+        $path = $image->storeAs('uploads/products', $fileName, 'public');
+
+        // بنرجّع المسار اللي يتحفظ في الداتا بيز
+        return $path;
+    }
+
+    return null;
+}
 }
