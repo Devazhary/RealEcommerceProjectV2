@@ -8,6 +8,7 @@ use App\Models\Product;
 
 class CartController extends Controller
 {
+
     public function add(Request $request)
     {
         $product = Product::findOrFail($request->id);
@@ -57,4 +58,6 @@ class CartController extends Controller
         session()->forget('cart'); // مسح الكارت بالكامل
         return redirect()->route('cart.index')->with('success', 'تم مسح السلة بنجاح.');
     }
+
+    
 }
