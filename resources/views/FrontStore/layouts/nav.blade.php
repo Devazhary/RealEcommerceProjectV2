@@ -5,13 +5,10 @@
 <header class="header">
     <div class="header-container">
         <div class="logo-wrapper">
-            <img 
-                src="{{ asset('storage/logo/logo.png') }}" 
-                alt="Logo"
-                class="logo-img"
-            >
+            <img src="{{ asset('storage/logo/logo.png') }}" alt="Logo" style="width: 80px; height: auto;">
         </div>
-        
+
+
         <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
             <span></span>
             <span></span>
@@ -26,7 +23,7 @@
                 <li class="nav-item">
                     <a href="{{ route('storeProducts') }}" class="nav-link">المنتجات</a>
                 </li>
-                
+
                 <!-- التصنيفات مع القائمة المنسدلة -->
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle">
@@ -34,16 +31,18 @@
                         <i class="dropdown-arrow">▼</i>
                     </a>
                     <ul class="dropdown-menu">
-                        @if(!empty($categories))
-                            @foreach($categories as $category)
-                                <li><a href="{{ route('showProductsByCategory', parameters: $category->id) }}">{{ $category->name }}</a></li>
+                        @if (!empty($categories))
+                            @foreach ($categories as $category)
+                                <li><a
+                                        href="{{ route('showProductsByCategory', parameters: $category->id) }}">{{ $category->name }}</a>
+                                </li>
                             @endforeach
                         @else
                             <p>لا توجد تصنيفات متاحة</p>
                         @endif
                     </ul>
                 </li>
-                
+
                 <li class="nav-item">
                     <a href="{{ route('contactForm') }}" class="nav-link">تواصل معنا</a>
                 </li>
@@ -72,14 +71,14 @@
         const navLinks = document.querySelectorAll('.nav-link');
         const dropdownToggle = document.querySelector('.dropdown-toggle');
         const dropdown = document.querySelector('.dropdown');
-        
+
         // Toggle menu function
         function toggleMenu() {
             menuToggle.classList.toggle('active');
             mainNav.classList.toggle('active');
             body.classList.toggle('menu-open');
         }
-        
+
         // Close menu function
         function closeMenu() {
             menuToggle.classList.remove('active');
@@ -90,7 +89,7 @@
                 dropdown.classList.remove('active');
             }
         }
-        
+
         // Toggle menu on button click
         if (menuToggle) {
             menuToggle.addEventListener('click', function(e) {
@@ -98,7 +97,7 @@
                 toggleMenu();
             });
         }
-        
+
         // Handle dropdown toggle
         if (dropdownToggle) {
             dropdownToggle.addEventListener('click', function(e) {
@@ -107,7 +106,7 @@
                 dropdown.classList.toggle('active');
             });
         }
-        
+
         // Close menu when clicking on a regular link (not dropdown)
         navLinks.forEach(function(link) {
             if (!link.classList.contains('dropdown-toggle')) {
@@ -116,7 +115,7 @@
                 });
             }
         });
-        
+
         // Close dropdown when clicking on dropdown item
         const dropdownItems = document.querySelectorAll('.dropdown-menu a');
         dropdownItems.forEach(function(item) {
@@ -124,28 +123,28 @@
                 closeMenu();
             });
         });
-        
+
         // Close menu when clicking outside
         document.addEventListener('click', function(e) {
-            if (body.classList.contains('menu-open') && 
-                !mainNav.contains(e.target) && 
+            if (body.classList.contains('menu-open') &&
+                !mainNav.contains(e.target) &&
                 !menuToggle.contains(e.target)) {
                 closeMenu();
             }
-            
+
             // Close dropdown when clicking outside
             if (dropdown && !dropdown.contains(e.target)) {
                 dropdown.classList.remove('active');
             }
         });
-        
+
         // Prevent closing when clicking inside nav
         if (mainNav) {
             mainNav.addEventListener('click', function(e) {
                 e.stopPropagation();
             });
         }
-        
+
         // Close menu on ESC key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
@@ -157,7 +156,7 @@
                 }
             }
         });
-        
+
         // Add active class to current page link
         const currentPath = window.location.pathname;
         navLinks.forEach(function(link) {

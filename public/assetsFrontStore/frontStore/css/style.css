@@ -1321,171 +1321,6 @@ body.menu-open {
 }
 
 
-/* ========================================== */
-/* ===== تصميم الموبايل (Responsive) ===== */
-/* ========================================== */
-
-@media (max-width: 768px) {
-    
-    /* إظهار زر القائمة */
-    .menu-toggle {
-        display: flex;
-    }
-    
-    /* القائمة الجانبية */
-    .main-nav {
-        position: fixed;
-        top: 0;
-        right: -100%; /* البداية من اليمين خارج الشاشة */
-        width: 300px;
-        height: 100vh;
-        background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: -5px 0 25px rgba(0, 0, 0, 0.3);
-        padding-top: 80px;
-        extra-y: auto;
-        z-index: 999;
-        direction: rtl; /* ضمان اتجاه القائمة من اليمين */
-    }
-    
-    .main-nav.active {
-        right: 0;
-    }
-    
-    /* قائمة الروابط */
-    .nav-list {
-        flex-direction: column;
-        gap: 0;
-        width: 100%;
-        padding: 0;
-        list-style: none; /* إخفاء أي نقاط */
-    }
-    
-    .nav-item {
-        width: 100%;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        list-style: none;
-    }
-    
-    .nav-item:last-child {
-        border-bottom: none;
-    }
-    
-    /* الروابط الأساسية */
-    .nav-link {
-        padding: 1.3rem 2rem;
-        font-size: 1.05rem;
-        width: 100%;
-        display: block;
-        color: white;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-    
-    .nav-link:hover {
-        background-color: rgba(255, 255, 255, 0.12);
-        padding-right: 2.5rem; /* إزاحة بسيطة لليمين عند التمرير */
-    }
-    
-    .nav-link.active {
-        background-color: rgba(255, 255, 255, 0.15);
-        border-right: 4px solid var(--color-accent);
-    }
-    
-    /* ===== Dropdown في الموبايل (الإصلاحات هنا) ===== */
-    .dropdown {
-        width: 100%;
-        position: relative;
-    }
-
-    .dropdown-toggle {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        cursor: pointer;
-    }
-
-    .dropdown-arrow {
-        font-size: 0.7rem;
-        transition: transform 0.3s ease;
-        margin-right: 10px; /* مسافة عن النص */
-    }
-
-    .dropdown.active .dropdown-arrow {
-        transform: rotate(180deg); /* لف السهم عند الفتح */
-    }
-
-    .dropdown-menu {
-        position: static;
-        display: block; /* لضمان عمل الـ max-height */
-        background: rgba(0, 0, 0, 0.2); /* خلفية أغمق قليلاً للتمييز */
-        margin: 0;
-        padding: 0;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s ease-out;
-        list-style: none; /* إخفاء النقاط البيضاء تماماً */
-        border: none;
-        box-shadow: none;
-        opacity: 1;
-        visibility: visible;
-    }
-
-    .dropdown.active .dropdown-menu {
-        max-height: 500px; /* قيمة كافية لعرض العناصر */
-    }
-
-    .dropdown-menu li {
-        width: 100%;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        list-style: none;
-    }
-
-    .dropdown-menu a {
-        color: rgba(255, 255, 255, 0.9);
-        padding: 1.1rem 3.5rem 1.1rem 1rem; /* زيادة Padding اليمين لعمل إزاحة (Indent) */
-        font-size: 0.95rem;
-        display: block;
-        width: 100%;
-        background: transparent;
-        text-decoration: none;
-    }
-
-    .dropdown-menu a:hover {
-        background: rgba(255, 255, 255, 0.1);
-        padding-right: 4rem;
-        color: white;
-    }
-
-    /* هيدر الموبايل */
-    .header-container {
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 0.8rem 1.5rem;
-        align-items: center;
-    }
-    
-    .logo-img {
-        width: 70px;
-        height: auto;
-    }
-}
-
-/* ===== الشاشات الصغيرة جداً ===== */
-@media (max-width: 480px) {
-    .main-nav {
-        width: 280px;
-    }
-    
-    .nav-link, .dropdown-toggle {
-        padding: 1.2rem 1.5rem;
-    }
-
-    .dropdown-menu a {
-        padding: 1rem 2.5rem 1rem 1rem;
-    }
-}
 
 /* ===== صفحة تفاصيل المنتج - نسخة بسيطة ===== */
 
@@ -1578,35 +1413,35 @@ body.menu-open {
     }
 }
 
-/*  */
+/* new code for css */
+
 /* ========================================== */
-/* ===== تنسيقات عامة (لكل الشاشات) ===== */
+/* ===== إعدادات عامة (كل الشاشات) ===== */
 /* ========================================== */
 
-/* إخفاء النقاط تماماً وتصفير المسافات */
-.nav-list, 
-.dropdown-menu {
-    list-style: none !important;
+.nav-list,
+.nav-item,
+.dropdown-menu,
+.dropdown-menu li {
+    list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.nav-item, 
-.dropdown-menu li {
-    list-style: none !important;
-}
-
-.nav-link {
+.nav-link,
+.dropdown-menu a {
     text-decoration: none;
+    outline: none;
     display: flex;
     align-items: center;
 }
 
 /* ========================================== */
-/* ===== وضع الكمبيوتر (Desktop) ===== */
+/* ===== Desktop (شاشات كبيرة) ===== */
 /* ========================================== */
 
 @media (min-width: 769px) {
+
     .nav-list {
         display: flex;
         align-items: center;
@@ -1614,108 +1449,190 @@ body.menu-open {
     }
 
     .nav-item.dropdown {
-        position: relative; /* ضروري لضبط مكان القائمة المنسدلة */
+        position: relative;
     }
 
     .dropdown-menu {
         position: absolute;
-        top: 100%; /* تظهر مباشرة تحت العنصر الأب */
-        right: 0;   /* محاذاة لليمين مع كلمة التصنيفات */
-        background-color: #fff;
+        top: 100%;
+        right: 0;
         min-width: 160px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        border-radius: 4px;
+        background: #fff;
         padding: 8px 0;
-        display: none; /* مخفية افتراضياً */
+        border-radius: 4px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        display: none;
         z-index: 1000;
     }
 
-    /* إظهار القائمة عند تمرير الماوس */
     .nav-item.dropdown:hover .dropdown-menu {
         display: block;
     }
 
-    /* تنسيق روابط التصنيفات في الـ PC */
-    .dropdown-menu li a {
-        color: #333;
+    .dropdown-menu a {
         padding: 10px 15px;
-        display: block;
-        text-align: right;
+        color: #333;
         font-size: 0.9rem;
+        text-align: right;
         transition: background 0.2s;
     }
 
-    .dropdown-menu li a:hover {
-        background-color: #f0f0f0;
+    .dropdown-menu a:hover {
+        background: #f0f0f0;
         color: var(--color-primary);
     }
 }
 
 /* ========================================== */
-/* ===== وضع الموبايل (Mobile) ===== */
+/* ===== Mobile & Tablet ===== */
 /* ========================================== */
 
 @media (max-width: 768px) {
+
+    /* زر القائمة */
+    .menu-toggle {
+        display: flex;
+    }
+
+    /* القائمة الجانبية */
     .main-nav {
         position: fixed;
         top: 0;
         right: -100%;
         width: 280px;
         height: 100vh;
-        background: var(--color-primary); /* تأكد من تعريف المتغير */
-        transition: 0.4s;
-        padding-top: 60px;
+        background: linear-gradient(
+            180deg,
+            var(--color-primary),
+            var(--color-primary-dark)
+        );
+        padding-top: 80px;
+        transition: right 0.4s ease;
+        box-shadow: -5px 0 25px rgba(0,0,0,0.3);
         direction: rtl;
+        z-index: 999;
     }
 
     .main-nav.active {
         right: 0;
     }
 
-    .nav-link {
-        padding: 15px 20px;
-        color: white;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
+    /* القائمة */
+    .nav-list {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
     }
 
-    /* في الموبايل نجعلها تنسدل لتدفع العناصر تحتها */
+    .nav-item {
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-item:last-child {
+        border-bottom: none;
+    }
+
+    .nav-link {
+        padding: 1.3rem 2rem;
+        color: #fff;
+        font-size: 1.05rem;
+        width: 100%;
+        transition: 0.3s;
+    }
+
+    .nav-link:hover {
+        background: rgba(255,255,255,0.12);
+        padding-right: 2.5rem;
+    }
+
+    .nav-link.active {
+        background: rgba(255,255,255,0.15);
+        border-right: 4px solid var(--color-accent);
+    }
+
+    /* ===== Dropdown Mobile ===== */
+
+    .dropdown {
+        width: 100%;
+    }
+
+    .dropdown-toggle {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .dropdown-arrow {
+        font-size: 0.7rem;
+        margin-right: 10px;
+        transition: transform 0.3s ease;
+    }
+
+    .dropdown.active .dropdown-arrow {
+        transform: rotate(180deg);
+    }
+
     .dropdown-menu {
-        position: static; 
-        background: rgba(0,0,0,0.1);
+        position: static;
+        background: rgba(0,0,0,0.2);
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.3s ease;
+        transition: max-height 0.4s ease;
     }
 
     .dropdown.active .dropdown-menu {
-        max-height: 400px;
+        max-height: 500px;
     }
 
-    .dropdown-menu li a {
-        padding: 12px 40px; /* إزاحة لليمين لتبدو كقائمة فرعية */
-        color: rgba(255,255,255,0.8);
+    .dropdown-menu li {
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .dropdown-menu a {
+        padding: 1.1rem 3.5rem 1.1rem 1rem;
+        color: rgba(255,255,255,0.9);
+        font-size: 0.95rem;
         display: block;
+        transition: 0.3s;
+    }
+
+    .dropdown-menu a:hover {
+        background: rgba(255,255,255,0.1);
+        padding-right: 4rem;
+        color: #fff;
+    }
+
+    /* الهيدر */
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.8rem 1.5rem;
+    }
+
+    .logo-img {
+        width: 70px;
+        height: auto;
     }
 }
 
-/*  */
-/* هذا الجزء يلغي الخط والنقاط في كل أوضاع الشاشة */
-.nav-link, 
-.dropdown-menu a {
-    text-decoration: none !important; /* يلغي الخط تحت النص */
-    list-style: none !important;    /* تأكيد إضافي لإخفاء النقاط */
-    outline: none;                  /* يلغي الإطار الوهمي عند الضغط */
-}
+/* ========================================== */
+/* ===== شاشات صغيرة جداً ===== */
+/* ========================================== */
 
-/* للتأكد من القوائم نفسها */
-.nav-list, 
-.dropdown-menu {
-    list-style-type: none !important;
-    padding: 0;
-    margin: 0;
-}
+@media (max-width: 480px) {
 
-.nav-item, 
-.dropdown-menu li {
-    list-style: none !important;
+    .main-nav {
+        width: 260px;
+    }
+
+    .nav-link {
+        padding: 1.2rem 1.5rem;
+    }
+
+    .dropdown-menu a {
+        padding: 1rem 2.5rem 1rem 1rem;
+    }
 }
