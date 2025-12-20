@@ -13,4 +13,10 @@ class ProductController extends Controller
         $products = Product::all();
         return view('FrontStore.products', compact('products'));
     }
+
+    public function show($id)
+    {
+        $product = Product::findOrFail($id);
+        return view('FrontStore.show', compact('product'));
+    }
 }

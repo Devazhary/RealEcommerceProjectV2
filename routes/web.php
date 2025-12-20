@@ -32,6 +32,7 @@ Route::get('/', function () {
 //front store
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/store/products', [FrontStoreProductController::class, 'index'])->name('storeProducts');
+Route::get('/store/products/{id}', [FrontStoreProductController::class, 'show'])->name('storeProduct.show');
 Route::get('/contact', [FrontStoreMessageController::class, 'index'])->name('contactForm');
 Route::post('/contact', [FrontStoreMessageController::class, 'store'])->name('submitContactForm');
 Route::get('/aboutUs', function () {

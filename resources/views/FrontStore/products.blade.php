@@ -16,6 +16,7 @@
                             {{ $product->description }}
                         </p>
                         <span class="price">{{ $product->price }} جنيه</span>
+                        <a href="{{ route('storeProduct.show', $product->id) }}" class="btn secondary-btn">عرض التفاصيل</a>
                         <button class="btn primary-btn add-to-cart" data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-price="{{ $product->price }}"
                             data-image="{{ asset('storage/'.$product->image) }}">
                             أضف للسلة
