@@ -16,6 +16,8 @@ use App\Http\Controllers\FrontStore\OrderController as confirmOrderController;
 use App\Http\Controllers\FrontStore\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
+// --- IGNORE ---
+use App\Http\Controllers\FrontStore\CategoryController as FrontStoreCategoryController;
 
 
 /*
@@ -45,6 +47,7 @@ Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
 Route::get('/cart/clear', [CartController::class, 'clearCart'])->name('cart.clear');
+Route::get('/showProductsByCategory/{id}', [FrontStoreCategoryController::class, 'getCategorProducts'])->name('showProductsByCategory');
 
 
 Route::get('/dashboard', function () {

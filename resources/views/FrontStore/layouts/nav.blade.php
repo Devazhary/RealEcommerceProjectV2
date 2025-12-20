@@ -1,3 +1,7 @@
+@php
+    use App\Models\Category;
+    $categories = Category::where('is_active', true)->get();
+@endphp
 <header class="header">
     <div class="header-container">
         <div class="logo-wrapper">
@@ -22,6 +26,24 @@
                 <li class="nav-item">
                     <a href="{{ route('storeProducts') }}" class="nav-link">المنتجات</a>
                 </li>
+                
+                <!-- التصنيفات مع القائمة المنسدلة -->
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">
+                        التصنيفات
+                        <i class="dropdown-arrow">▼</i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        @if(!empty($categories))
+                            @foreach($categories as $category)
+                                <li><a href="{{ route('showProductsByCategory', parameters: $category->id) }}">{{ $category->name }}</a></li>
+                            @endforeach
+                        @else
+                            <p>لا توجد تصنيفات متاحة</p>
+                        @endif
+                    </ul>
+                </li>
+                
                 <li class="nav-item">
                     <a href="{{ route('contactForm') }}" class="nav-link">تواصل معنا</a>
                 </li>
@@ -40,10 +62,7 @@
 </header>
 
 
-<!-- ============================================ -->
-<!-- الجزء الثاني: JavaScript - ضعه قبل </body> -->
-<!-- ============================================ -->
-
+<!-- JavaScript -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Get elements
@@ -51,6 +70,8 @@
         const mainNav = document.getElementById('mainNav');
         const body = document.body;
         const navLinks = document.querySelectorAll('.nav-link');
+        const dropdownToggle = document.querySelector('.dropdown-toggle');
+        const dropdown = document.querySelector('.dropdown');
         
         // Toggle menu function
         function toggleMenu() {
@@ -64,6 +85,10 @@
             menuToggle.classList.remove('active');
             mainNav.classList.remove('active');
             body.classList.remove('menu-open');
+            // Close dropdown when closing menu
+            if (dropdown) {
+                dropdown.classList.remove('active');
+            }
         }
         
         // Toggle menu on button click
@@ -74,9 +99,28 @@
             });
         }
         
-        // Close menu when clicking on a link
+        // Handle dropdown toggle
+        if (dropdownToggle) {
+            dropdownToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropdown.classList.toggle('active');
+            });
+        }
+        
+        // Close menu when clicking on a regular link (not dropdown)
         navLinks.forEach(function(link) {
-            link.addEventListener('click', function() {
+            if (!link.classList.contains('dropdown-toggle')) {
+                link.addEventListener('click', function() {
+                    closeMenu();
+                });
+            }
+        });
+        
+        // Close dropdown when clicking on dropdown item
+        const dropdownItems = document.querySelectorAll('.dropdown-menu a');
+        dropdownItems.forEach(function(item) {
+            item.addEventListener('click', function() {
                 closeMenu();
             });
         });
@@ -87,6 +131,11 @@
                 !mainNav.contains(e.target) && 
                 !menuToggle.contains(e.target)) {
                 closeMenu();
+            }
+            
+            // Close dropdown when clicking outside
+            if (dropdown && !dropdown.contains(e.target)) {
+                dropdown.classList.remove('active');
             }
         });
         
@@ -99,8 +148,13 @@
         
         // Close menu on ESC key
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && body.classList.contains('menu-open')) {
-                closeMenu();
+            if (e.key === 'Escape') {
+                if (body.classList.contains('menu-open')) {
+                    closeMenu();
+                }
+                if (dropdown && dropdown.classList.contains('active')) {
+                    dropdown.classList.remove('active');
+                }
             }
         });
         
